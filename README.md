@@ -75,7 +75,6 @@ Este é um projeto desenvolvido na matéria de Programação Orientada a Objetos
 ```bash
    dotnet run
 ```
-4. Siga as instruções do menu (quando houver).
 
 ## Estrutura dos Projetos
 
