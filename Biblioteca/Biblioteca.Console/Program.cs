@@ -13,6 +13,6 @@ class Program
         Console.WriteLine($"Livro '{livro1.Titulo}' emprestado para {leitor1.Nome} em {emprestimo1.DataEmprestimo}");
 
         leitor1.DevolverLivro(emprestimo1);
-        Console.WriteLine($"Livro '{livro1.Titulo}' devolvido em {emprestimo1.DataDevolucao}");
+        Console.WriteLine($"Livro '{livro1.Titulo}' deve ser devolvido até {emprestimo1.DataDevolucao}");
     }
 }

@@ -18,7 +18,7 @@ namespace Biblioteca.Model
 
         public void Devolver()
         {
-            DataDevolucao = DateTime.Now.AddDays(10);
+            DataDevolucao = DateTime.Now.AddDays(14);
         }
     }
 }
