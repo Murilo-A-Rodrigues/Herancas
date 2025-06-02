@@ -5,28 +5,79 @@ class Program
 {
     static void Main()
     {
-        var veiculo = new Veiculo("Fiat Uno", "ABC-1234", "Passeio");
+        Console.Write("Modelo do veículo: ");
+        var modelo = Console.ReadLine();
+        Console.Write("Placa do veículo: ");
+        var placa = Console.ReadLine();
+        Console.Write("Tipo do veículo: ");
+        var tipo = Console.ReadLine();
 
-        var manut1 = new Manutencao(DateTime.ParseExact("01/06/2024", "dd/MM/yyyy", null), "Troca de óleo", "Preventiva");
-        var manut2 = new Manutencao(DateTime.ParseExact("01/06/2024", "dd/MM/yyyy", null), "Alinhamento", "Corretiva");
-        var manut3 = new Manutencao(DateTime.ParseExact("02/06/2024", "dd/MM/yyyy", null), "Revisão dos freios", "Preventiva");
+        var veiculo = new Veiculo(modelo, placa, tipo);
 
-        foreach (var manu in new[] { manut1, manut2, manut3 })
+        while (true)
         {
-            try
+            Console.WriteLine("\n--- MENU VEÍCULO ---");
+            Console.WriteLine("1. Adicionar manutenção");
+            Console.WriteLine("2. Ver histórico de manutenções");
+            Console.WriteLine("0. Sair");
+            Console.Write("Escolha uma opção: ");
+            var opcao = Console.ReadLine();
+
+            if (opcao == "0") break;
+
+            switch (opcao)
             {
-                veiculo.AdicionarManutencao(manu);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
+                case "1":
+                    try
+                    {
+                        Console.Write("Data da manutenção (dd/MM/yyyy): ");
+                        var dataStr = Console.ReadLine();
+                        if (!DateTime.TryParseExact(dataStr, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out DateTime data))
+                        {
+                            Console.WriteLine("Data inválida! Use o formato dd/MM/yyyy ou verifique se a data foi digitada corretamente.");
+                            break;
+                        }
+                        if (data > DateTime.Now)
+                        {
+                            Console.WriteLine("A data da manutenção não pode ser no futuro.");
+                            break;
+                        }
+
+                        Console.Write("Descrição: ");
+                        var descricao = Console.ReadLine();
+                        Console.Write("Tipo (Preventiva/Corretiva): ");
+                        var tipoManut = Console.ReadLine();
+
+                        var manut = new Manutencao(data, descricao, tipoManut);
+                        veiculo.AdicionarManutencao(manut);
+                        Console.WriteLine("Manutenção adicionada com sucesso!");
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Erro ao adicionar manutenção: {ex.Message}");
+                    }
+                    break;
+
+                case "2":
+                    Console.WriteLine("\nHistórico de manutenções:");
+                    if (veiculo.Manutencoes.Count == 0)
+                    {
+                        Console.WriteLine("Nenhuma manutenção registrada.");
+                    }
+                    else
+                    {
+                        foreach (var manu in veiculo.Manutencoes)
+                        {
+                            Console.WriteLine($"{manu.Data:dd/MM/yyyy} - {manu.Tipo} - {manu.Descricao}");
+                        }
+                    }
+                    break;
+
+                default:
+                    Console.WriteLine("Opção inválida.");
+                    break;
             }
         }
-
-        Console.WriteLine("\nHistórico de manutenções:");
-        foreach (var manu in veiculo.Manutencoes)
-        {
-            Console.WriteLine($"{manu.Data:dd/MM/yyyy} - {manu.Tipo} - {manu.Descricao}");
-        }
+        Console.WriteLine("Programa encerrado.");
     }
 }

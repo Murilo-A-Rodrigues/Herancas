@@ -9,16 +9,27 @@ namespace Biblioteca.Model
         public DateTime DataEmprestimo { get; }
         public DateTime? DataDevolucao { get; private set; }
 
-        public Emprestimo(Leitor leitor, Livro livro)
+        public Emprestimo(Leitor leitor, Livro livro, DateTime? dataEmprestimo = null)
         {
             Leitor = leitor;
             Livro = livro;
-            DataEmprestimo = DateTime.Now;
+            DataEmprestimo = dataEmprestimo ?? DateTime.Now;
         }
 
+        // Adicione este método:
         public void Devolver()
         {
-            DataDevolucao = DateTime.Now.AddDays(14);
+            DataDevolucao = DateTime.Now;
+        }
+
+        public DateTime PrazoLimiteDevolucao()
+        {
+            return DataEmprestimo.AddDays(14);
+        }
+
+        public bool DevolvidoAposPrazo()
+        {
+            return DataDevolucao.HasValue && DataDevolucao.Value > PrazoLimiteDevolucao();
         }
     }
 }
