@@ -96,9 +96,11 @@ Este projeto está licenciado sob a [MIT License](LICENSE).
 
 ## Créditos
 
-Este projeto foi desenvolvido por Murilo Andre Rodrigues como parte da disciplina de Programação Orientada a Objetos.
+Este projeto foi desenvolvido por Murilo Andre Rodrigues e por Gustavo Finkler Haas como parte da disciplina de Programação Orientada a Objetos.
 
 ## Contato
 
 - **Email**: murilorodrigues@alunos.utfpr.edu.br
+- **Email**: gustavofhaas14@gmail.com
 - **GitHub**: Murilo-A-Rodrigues(https://github.com/Murilo-A-Rodrigues)
+- **GitHub**: Gustavo-Finkler-Haas(https://github.com/gustavofhaas)
